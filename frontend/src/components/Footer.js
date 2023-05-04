@@ -16,16 +16,18 @@ const Footer = () => {
     <footer>
       <Container>
         <Row>
-          <Col className="text-center py-3">Copyright &copy; 2ndChance</Col>
-        </Row>
-        <Row className="py-3">
-          <Col>
-            <h6>
-              <Link to={{ pathname: "/contactus", search: `?redirect=${redirect}` }} onClick={handleContactUsClick}>
-                Contact Us
-              </Link>
-            </h6>
+          <Col className="text-center py-1">
+            <Link
+              to={{ pathname: "/contactus", search: `?redirect=${redirect}` }}
+              onClick={handleContactUsClick}
+              id="contact"
+            >
+              Contact Us <i className="fa-solid fa-envelope"></i>
+            </Link>
           </Col>
+        </Row>
+        <Row>
+          <Col className="text-center py-1">Copyright &copy; 2ndChance</Col>
         </Row>
       </Container>
     </footer>

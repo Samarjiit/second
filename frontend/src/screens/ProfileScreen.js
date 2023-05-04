@@ -9,9 +9,9 @@ import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 import { listMyOrders } from "../actions/orderActions";
 import { LinkContainer } from "react-router-bootstrap";
 import Meta from "../components/Meta";
-const ProfileScreen = ({ location }) => {
+const ProfileScreen = () => {
   const [name, setName] = useState("");
-  const [phoneNo, setPhoneNo] = useState(null);
+  const [phoneNo, setPhoneNo] = useState(0);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");

@@ -15,6 +15,16 @@ const Header = () => {
     dispatch(logout());
     navigate("/login");
   };
+  const sellHandler = () => {
+    if (userInfo && !userInfo.isSeller && !userInfo.isAdmin) {
+      navigate("/sellregister");
+    } else if (!userInfo) {
+      window.alert(
+        "Please register/ login as a user before registering as a Seller."
+      );
+      navigate("/login");
+    }
+  };
   return (
     <header>
       <Navbar expand="lg" variant="dark" collapseOnSelect>
@@ -51,6 +61,13 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
+              {(userInfo && !userInfo.isAdmin && !userInfo.isSeller) ||
+                (!userInfo && (
+                  <Nav.Link onClick={sellHandler}>
+                    <i className="fa-solid fa-people-carry-box"></i> Sell Now
+                  </Nav.Link>
+                ))}
+
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title="Admin" id="adminmenu">
                   <LinkContainer to="/admin/userlist">

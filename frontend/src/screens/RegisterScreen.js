@@ -7,14 +7,15 @@ import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { register } from "../actions/userActions";
 import Meta from "../components/Meta";
-import axios from "axios";
 
 const RegisterScreen = ({ location }) => {
   const [name, setName] = useState("");
   const [phoneNo, setPhoneNo] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const dispatch = useDispatch();
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
@@ -22,26 +23,6 @@ const RegisterScreen = ({ location }) => {
   const redirectInUrl = new URLSearchParams(search).get("querystringkey");
   const redirect = redirectInUrl ? redirectInUrl : "/";
   const navigate = useNavigate();
-
-  const verifyUser = () => {
-    axios.post("/api/users/register", {
-      email: email,
-      password: password,
-      name: name,
-      phoneNo: phoneNo
-
-    })
-      .then((response) => {
-
-
-        localStorage.setItem("userId", JSON.stringify(response.data.id))
-        navigate('/verifyOTP')
-      }).catch((error) => {
-        alert(error)
-      });
-
-  }
-
 
   useEffect(() => {
     if (userInfo) {
@@ -62,23 +43,32 @@ const RegisterScreen = ({ location }) => {
         password
       )
     ) {
-      // setMessage(
-      //   "Invalid password. (Must contain 1 digit, 1 lowercase, 1 uppercase and 1 special character)"
-      // );
+      setMessage(
+        "Invalid password. (Must contain 1 digit, 1 lowercase, 1 uppercase and 1 special character)"
+      );
+    } else if (password !== confirmPassword) {
+      setMessage("Passwords do not match.");
     } else if (
       name.trim() === "" ||
       email.trim() === "" ||
-      password.trim() === ""
-
+      password.trim() === "" ||
+      confirmPassword.trim() === ""
     ) {
       setMessage("All fields are required.");
+    } else if (!termsAccepted) {
+      setMessage("Please accept the terms and conditions.");
     } else {
       dispatch(register(name, phoneNo, email, password));
     }
   };
+
+  const handleCheckboxChange = (e) => {
+    setTermsAccepted(e.target.checked);
+  };
+
   return (
     <>
-      <Meta title="2nd Chance | Register" />
+      <Meta title="2ndChance | Register" />
       <FormContainer>
         <br></br>
         <h4>Sign Up</h4>
@@ -135,7 +125,7 @@ const RegisterScreen = ({ location }) => {
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          {/* <Form.Group controlId="confirmPassword">
+          <Form.Group controlId="confirmPassword">
             <br></br>
             <Form.Label>
               <h6>Confirm Password</h6>
@@ -146,11 +136,26 @@ const RegisterScreen = ({ location }) => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Form.Control>
-          </Form.Group> */}
+            <br></br>
+          </Form.Group>
+          <Form.Group controlId="termsAndConditions">
+            <Form.Check
+              type="checkbox"
+              label={
+                <span>
+                  I agree to the terms and conditions of the website and
+                  understand the responsibilities and obligations that come with
+                  using its services.
+                </span>
+              }
+              checked={termsAccepted}
+              onChange={handleCheckboxChange}
+            ></Form.Check>
+          </Form.Group>
 
           <Form.Group id="btn" className="buttons">
             <br></br>
-            <Button type="submit" variant="light" onClick={verifyUser}>
+            <Button type="submit" variant="light">
               Register
             </Button>
           </Form.Group>

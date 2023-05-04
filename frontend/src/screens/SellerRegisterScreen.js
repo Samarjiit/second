@@ -2,61 +2,81 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
 import Meta from "../components/Meta";
-import emailjs from 'emailjs-com';
-import { useDispatch } from "react-redux";
-import { checkUser } from "../actions/userActions";
-import { useNavigate } from "react-router-dom";
+import emailjs from "emailjs-com";
 
 const SellerRegisterScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [aadhar, setAadhar] = useState("");
+  const [validated, setValidated] = useState(false);
+  const [termsChecked, setTermsChecked] = useState(false);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const submitHandler = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+      setValidated(true);
+      return;
+    }
 
     if (email.trim() === "" || aadhar.trim() === "" || name.trim() === "") {
       alert("All fields are required.");
       return;
     }
 
+    if (!termsChecked) {
+      alert("Please accept the Terms and Conditions to continue.");
+      return;
+    }
+
     //const existingUser = await dispatch(checkUser(email));
 
     //if (existingUser) {
-      const templateParams = {
-        from_name: `${name}`,
-        from_email: email,
-        aadhar_num: aadhar,
-        name: name,
-        email: email,
-        message: `${name} has sent a request for becoming a seller.
+    const templateParams = {
+      from_name: `${name}`,
+      from_email: email,
+      aadhar_num: aadhar,
+      name: name,
+      email: email,
+      message: `${name} has sent a request for becoming a seller.
         Email-Id: ${email} 
         Aadhar Number: ${aadhar} `,
-      }
+    };
 
-      emailjs.send('service_5r4f9z8', 'template_m1tbf7p', templateParams, 'LOdDyu-1pJGtYSCu5')
-        .then(() => {
-          alert('Your request was submitted');
+    emailjs
+      .send(
+        "service_5r4f9z8",
+        "template_m1tbf7p",
+        templateParams,
+        "LOdDyu-1pJGtYSCu5"
+      )
+      .then(
+        () => {
+          alert("Your request was submitted");
           setName("");
           setEmail("");
           setAadhar("");
-        }, (error) => {
+          setTermsChecked(false);
+        },
+        (error) => {
           console.log(error.text);
-        });     
-    } //else {
-      //alert("User does not exist. Please make sure you are registered with us.");
-      //navigate("/register");
+        }
+      );
+    //} else {
+    //alert("User does not exist. Please make sure you are registered with us.");
+    //navigate("/register");
     //}
+  };
 
   return (
     <>
-      <Meta title="2nd Chance | Contact Us" />
+      <Meta title="2ndChance | Contact Us" />
       <FormContainer>
         <br></br>
         <h4>Sell with us!</h4>
-        <Form onSubmit={submitHandler}>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group controlId="name">
             <br></br>
             <Form.Label>
@@ -65,9 +85,13 @@ const SellerRegisterScreen = () => {
             <Form.Control
               type="text"
               placeholder="Enter name"
-              value={ name }
+              value={name}
               onChange={(e) => setName(e.target.value)}
+              required
             ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Please provide a valid name.
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group controlId="email">
             <br></br>
@@ -79,7 +103,11 @@ const SellerRegisterScreen = () => {
               placeholder="Enter email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Please provide a valid Email Address
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group controlId="aadhar">
             <br></br>
@@ -88,17 +116,29 @@ const SellerRegisterScreen = () => {
             </Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter aadhar number"
+              placeholder="Enter Aadhar Number"
               value={aadhar}
               onChange={(e) => setAadhar(e.target.value)}
+              required
             ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Please provide a valid Aadhar Number.
+            </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group id="btn" className="buttons">
-            <br></br>
-            <Button type="submit" variant="light">
-              Register
-            </Button>
+          <br></br>
+          <Form.Group controlId="termsCheckbox">
+            <Form.Check
+              type="checkbox"
+              label="I agree to the Terms and Conditions for selling on this platform."
+              checked={termsChecked}
+              onChange={() => setTermsChecked(!termsChecked)}
+              required
+            />
           </Form.Group>
+          <br></br>
+          <Button type="submit" variant="primary">
+            Submit
+          </Button>
         </Form>
       </FormContainer>
     </>

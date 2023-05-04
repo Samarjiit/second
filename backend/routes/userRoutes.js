@@ -29,10 +29,10 @@ router
   .get(protect, admin, getUserById)
   .put(protect, admin, updateUser);
 
-   //signUp
-router.post('/register',Register);
+//signUp
+router.post("/register", Register);
 
 //verifyOTP
-router.post('/verifyOTP',verifyOTP);
+router.post("/verifyOTP", verifyOTP);
 
 export default router;

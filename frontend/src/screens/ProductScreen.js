@@ -143,16 +143,6 @@ const ProductScreen = ({}) => {
                     Buy
                   </Button>
                 </ListGroupItem>
-                <h6 id="or">or</h6>
-                <ListGroupItem id="btn">
-                  <Button
-                    className="btn-block"
-                    type="button"
-                    disabled={userInfo && product.user === userInfo._id}
-                  >
-                    Chat with the Seller
-                  </Button>
-                </ListGroupItem>
               </ListGroup>
             </Col>
           </Row>
@@ -267,3 +257,15 @@ const ProductScreen = ({}) => {
 };
 
 export default ProductScreen;
+/*
+ <h6 id="or">or</h6>
+                <ListGroupItem id="btn">
+                  <Button
+                    className="btn-block"
+                    type="button"
+                    disabled={userInfo && product.user === userInfo._id}
+                  >
+                    Chat with the Seller
+                  </Button>
+                </ListGroupItem>
+                */

@@ -25,6 +25,7 @@ import OrderListScreen from "./screens/OrderListScreen";
 import SellerOrderListScreen from "./screens/SellerOrderListScreen";
 import ContactusScreen from "./screens/ContactusScreen";
 import SellerRegisterScreen from "./screens/SellerRegisterScreen";
+import UserOTPScreen from "./screens/UserOTPScreen";
 
 const App = () => {
   const [clientID, setClientID] = useState("");
@@ -56,6 +57,7 @@ const App = () => {
                   <Route path="/login" element={<LoginScreen />} />
                   <Route path="/register" element={<RegisterScreen />} />
                   <Route path="/profile" element={<ProfileScreen />} />
+                  <Route path="/verifyOTP" element={<UserOTPScreen />} />
                   <Route
                     path="/product/:id/:seller"
                     element={<ProductScreen />}
@@ -102,8 +104,11 @@ const App = () => {
                   <Route path="/search/:keyword" element={<HomeScreen />} />
                   <Route path="/page/:pageNumber" element={<HomeScreen />} />
 
-                  <Route path="/contactus" element={<ContactusScreen/>}/>
-                  <Route path="/sellregister" element={<SellerRegisterScreen/>}/>
+                  <Route path="/contactus" element={<ContactusScreen />} />
+                  <Route
+                    path="/sellregister"
+                    element={<SellerRegisterScreen />}
+                  />
 
                   <Route
                     path="/search/:keyword/page/:pageNumber"

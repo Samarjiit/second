@@ -2,16 +2,16 @@ import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generateToken.js";
 import User from "../models/userModel.js";
 import OTPverify from "../models/UserOTPVerification.js";
-import bcrypt from 'bcryptjs'
-import nodemailer from 'nodemailer'
+import bcrypt from "bcryptjs";
+import nodemailer from "nodemailer";
 
-let transporter=nodemailer.createTransport({
+let transporter = nodemailer.createTransport({
   service: "gmail",
-  auth:{
-    user:"student407@milagrescollegekallianpur.edu.in",
-    pass: "xbxhknhcfmfaffbq", 
+  auth: {
+    user: "student407@milagrescollegekallianpur.edu.in",
+    pass: "xbxhknhcfmfaffbq",
   },
-}); 
+});
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -103,11 +103,11 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name;
     user.phoneNo = req.body.phoneNo || user.phoneNo;
-    const userEmailExists = await User.findOne({ email: req.body.email });
+    /* const userEmailExists = await User.findOne({ email: req.body.email });
     if (userEmailExists) {
       res.status(400); //bad request
       throw new Error("Email Already in Use");
-    }
+    }*/
     user.email = req.body.email || user.email;
     if (req.body.password) {
       user.password = req.body.password;
@@ -193,19 +193,17 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
-const Register=(req, res) => {
- 
-   
-  User.find({email: req.body.email}).then((result)=>{
-   // console.table(result)
-    if(result===null){
+const Register = (req, res) => {
+  User.find({ email: req.body.email }).then((result) => {
+    // console.table(result)
+    if (result === null) {
       res.json({
-        status:"FAILED",
+        status: "FAILED",
         message: "User with the provided email already exists",
       });
-    }else{
-      const saltrounds=10;
-      bcrypt.hash(req.body.password,saltrounds,(err,hash)=>{
+    } else {
+      const saltrounds = 10;
+      bcrypt.hash(req.body.password, saltrounds, (err, hash) => {
         if (err) {
           res.status(401).json({
             error: err,
@@ -217,39 +215,40 @@ const Register=(req, res) => {
             phoneNo: req.body.phoneNo,
             email: req.body.email,
             password: hash,
-            verified:false,
-          
-      });
-      users.save().then((req)=>{
-            sendOTPVerificationEmail(req,res)
-            console.log(res)
-          })
-           .catch((error)=>{
-          console.log(error);
-          res.status(400).json({
-          error: error,
-            //   res.status(400).json({
-            //  status:"FAILED",
-            //  message:"An error occured while saving user account!",
+            verified: false,
+          });
+          users
+            .save()
+            .then((req) => {
+              sendOTPVerificationEmail(req, res);
+              console.log(res);
             })
-           })       
-       }
-    })
-    } 
-  })
-}
+            .catch((error) => {
+              console.log(error);
+              res.status(400).json({
+                error: error,
+                //   res.status(400).json({
+                //  status:"FAILED",
+                //  message:"An error occured while saving user account!",
+              });
+            });
+        }
+      });
+    }
+  });
+};
 
-const sendOTPVerificationEmail=async({id,name, email},res)=>{
-  try{
+const sendOTPVerificationEmail = async ({ id, name, email }, res) => {
+  try {
     var otp = "";
     const randomchar =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     for (let i = 0; i < 5; i++) {
       otp += randomchar.charAt(Math.random() * randomchar.length);
-      }
+    }
 
     //mail options
-    const mailOptions={
+    const mailOptions = {
       from: "student407@milagrescollegekallianpur.edu.in",
       to: email,
       subject: "Email verification",
@@ -265,39 +264,39 @@ const sendOTPVerificationEmail=async({id,name, email},res)=>{
             <h1 style="font-size: 40px; letter-spacing: 2px; text-align:center;">${otp}</h1>
        </div>
         `,
-    }
+    };
 
     //hash the otp
-    const saltrounds=10;
-    const hashedOTP=await bcrypt.hash(otp,saltrounds);
-    const newOTPVerification= new OTPverify({
-      userId:id,
-      otp:hashedOTP,
+    const saltrounds = 10;
+    const hashedOTP = await bcrypt.hash(otp, saltrounds);
+    const newOTPVerification = new OTPverify({
+      userId: id,
+      otp: hashedOTP,
       name: name,
       email: email,
       createdAt: Date.now(),
-      expiresAt:Date.now()+3600000,     
-    })
+      expiresAt: Date.now() + 3600000,
+    });
 
     //save otp record
     await newOTPVerification.save();
     const message = "Verification otp email sent";
     await transporter.sendMail(mailOptions);
     res.status(200).json({
-   
-    id,email,message
-    })
-  }catch(error){
+      id,
+      email,
+      message,
+    });
+  } catch (error) {
     res.json({
-      status:"FAILED",
-      message:error.message,
-    })        
-  }   
+      status: "FAILED",
+      message: error.message,
+    });
+  }
 };
 
-const verifyOTP= async (req, res) => {
+const verifyOTP = async (req, res) => {
   try {
-  
     let { userId, otp } = req.body;
     let hashedOTP = "";
     let email = "";
@@ -306,10 +305,10 @@ const verifyOTP= async (req, res) => {
     if (!userId || !otp) {
       throw Error("Empty OTP");
     } else {
-      const userOTPVerificationRecord  = await OTPverify.find({ userId});
-     //doubt
-      if (userOTPVerificationRecord === null ) {
-        throw new Error("Account doesnt exists or user signed up already");
+      const userOTPVerificationRecord = await OTPverify.find({ userId });
+      //doubt
+      if (userOTPVerificationRecord === null) {
+        throw new Error("Account doesn't exist or user signed up already");
       } else {
         expiresAt = userOTPVerificationRecord[0];
         hashedOTP = userOTPVerificationRecord[0].otp;
@@ -317,17 +316,16 @@ const verifyOTP= async (req, res) => {
         uName = userOTPVerificationRecord[0].name;
       }
       if (expiresAt != null && expiresAt < Date.now()) {
-        await  OTPverify.deleteMany({ userId });
+        await OTPverify.deleteMany({ userId });
         throw new Error("code expired");
       } else {
         const validOtp = await bcrypt.compare(otp, hashedOTP);
         if (!validOtp) {
-          throw new Error("Invalid code passed"); 
+          throw new Error("Invalid code passed");
         } else {
           //success
-     await User.updateOne({_id:userId},{verified:true})
-          
-          
+          await User.updateOne({ _id: userId }, { verified: true });
+
           const mail = {
             from: "student407@milagreskallianpur.edu",
             to: email,
@@ -346,21 +344,20 @@ const verifyOTP= async (req, res) => {
         `,
           };
           await transporter.sendMail(mail);
-          await  OTPverify.deleteMany({ userId });
-          const message="Verified!";
-          res.status(200).json({userId,message});
+          await OTPverify.deleteMany({ userId });
+          const message = "Verified!";
+          res.status(200).json({ userId, message });
         }
       }
     }
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(403).json({
       status: err,
       message: err.mesage,
     });
   }
 };
-
 
 export {
   authUser,

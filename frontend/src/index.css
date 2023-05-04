@@ -2,7 +2,7 @@
   font-family: "Poppins", sans-serif;
 }
 main {
-  min-height: 80vh;
+  min-height: 150vh;
 }
 img {
   object-fit: cover;
@@ -304,4 +304,8 @@ td {
   .carousel {
     display: none;
   }
+}
+#contact {
+  color: rgb(139, 51, 0);
+  text-decoration: none;
 }

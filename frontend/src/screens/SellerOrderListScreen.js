@@ -54,7 +54,7 @@ const OrderListScreen = () => {
                 (order) =>
                   order.orderItems.find(
                     (item) => item.seller === userInfo._id
-                  ) && order.user._id !== userInfo._id
+                  ) && order.user !== userInfo._id
               )
               .map((order) => (
                 <tr key={order._id}>

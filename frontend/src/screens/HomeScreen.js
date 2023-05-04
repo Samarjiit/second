@@ -35,7 +35,7 @@ const HomeScreen = () => {
       <br></br>
       <br></br>
 
-      <h5>Latest Products</h5>
+      {!keyword && <h5>Latest Products</h5>}
       {loading ? (
         <Loader />
       ) : error ? (

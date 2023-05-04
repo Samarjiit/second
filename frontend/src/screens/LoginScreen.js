@@ -37,7 +37,7 @@ const LoginScreen = ({ location }) => {
       <Meta title="2nd Chance | Login" />
       <FormContainer>
         <br></br>
-        <h4>Sign In</h4>
+        <h4>Log In</h4>
         {message && <Message variant="light">{message}</Message>}
         {error && <Message variant="light">{error}</Message>}
         {loading && <Loader />}
@@ -83,15 +83,6 @@ const LoginScreen = ({ location }) => {
                 to={redirect ? `/register?redirect=${redirect}` : "/register"}
               >
                 Register
-              </Link>
-            </h6>
-          </Col>
-        </Row>
-        <Row className="py-3">
-          <Col>
-            <h6>
-              <Link to={redirect ? `/sellregister?redirect=${redirect}` : "/sellregister"}>
-                Register as a seller
               </Link>
             </h6>
           </Col>
