@@ -1,0 +1,307 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+main {
+  min-height: 80vh;
+}
+img {
+  object-fit: cover;
+}
+.navbar {
+  background-color: rgba(251, 238, 208, 0.846);
+}
+.navbar a {
+  color: rgb(117, 43, 9);
+}
+
+#basic-navbar-nav {
+  background-color: rgba(251, 238, 208, 0.846);
+  text-align: left;
+}
+
+.toggle {
+  color: rgb(246, 169, 70);
+}
+#logo {
+  width: 7vh;
+  height: 7vh;
+}
+.toggle:focus {
+  box-shadow: none;
+}
+#brand {
+  color: rgb(159, 58, 0);
+}
+#brand:hover {
+  color: rgb(0, 0, 0);
+}
+
+.productcard {
+  border: 0;
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  box-shadow: 0 2px 15px rgba(108, 108, 108, 0.2);
+  height: 23rem;
+  transition: transform ease 0.5s;
+}
+.productcard:hover {
+  transform: translate(0, -7px);
+}
+.productcard a {
+  text-decoration: none;
+}
+#prodimg {
+  box-shadow: 0 1px 5px rgba(74, 74, 74, 0.2);
+}
+.top {
+  flex-direction: row;
+}
+#prodcategory {
+  box-shadow: 0 1px 5px rgba(108, 108, 108, 0.2);
+  background-color: rgb(254, 234, 188);
+  justify-content: left;
+  width: fit-content;
+  padding: 1vh;
+  border-radius: 5px;
+  font-size: 5px;
+  color: black;
+}
+
+#prodreviews {
+  font-size: 15px;
+  color: goldenrod;
+}
+
+#prodname {
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  width: fit-content;
+  text-transform: uppercase;
+  text-align: left;
+}
+.rating span {
+  margin: 0.1rem;
+}
+
+#homepgrating {
+  font-size: 5px;
+}
+
+#prodcond {
+  border-radius: 5px;
+  width: auto;
+  font-size: 16px;
+  color: purple;
+  padding: 10px;
+  float: right;
+}
+#cfooter {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: white;
+  text-align: center;
+}
+#prodprice {
+  font-size: 0.9em;
+  color: rgb(186, 50, 0);
+}
+#produpload {
+  font-size: 15px;
+  color: rgb(123, 123, 123);
+  justify-content: center;
+}
+@media screen and (max-width: 767px) and (min-width: 470px) {
+  .productcard {
+    height: 30rem;
+  }
+}
+@media screen and (max-width: 470px) and (min-width: 420px) {
+  .productcard {
+    height: 28rem;
+  }
+}
+@media screen and (max-width: 320px) {
+  #brand {
+    font-size: 20px;
+  }
+  .productcard {
+    height: 40rem;
+  }
+}
+.back {
+  background-color: rgb(253, 209, 150);
+  color: rgb(109, 0, 0);
+  border: 0;
+  width: auto;
+  font-size: 0.7em;
+}
+.back:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(172, 97, 0);
+}
+.buttons button {
+  background-color: rgb(255, 230, 197);
+  color: rgb(109, 0, 0);
+  border: 0;
+  width: auto;
+  font-size: 0.9em;
+}
+#btn {
+  outline: none;
+  border: 0;
+  width: auto;
+}
+.buttons button:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(139, 51, 0);
+}
+#or {
+  padding-top: 1em;
+}
+#pname {
+  font-size: 1.2em;
+  color: rgb(191, 83, 0);
+  text-transform: uppercase;
+}
+#pseller {
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  text-transform: capitalize;
+}
+#pprice {
+  font-size: 1em;
+  color: rgb(0, 55, 75);
+}
+#pstatus {
+  font-size: 1em;
+  color: rgb(159, 0, 0);
+}
+#pdesc {
+  font-size: 1.1em;
+  color: rgb(191, 83, 0);
+}
+#dcontent {
+  font-size: 0.9em;
+}
+
+h4 {
+  color: rgb(125, 17, 82);
+  font-size: 1.3em;
+}
+
+h5 {
+  font-size: 1.1em;
+  color: rgb(161, 90, 3);
+}
+p {
+  font-size: 1em;
+}
+#subtotal {
+  border: none;
+  text-align: left;
+}
+#back {
+  color: blue;
+}
+#steps {
+  font-size: 0.9em;
+}
+#label {
+  font-size: 18px;
+}
+
+#order {
+  font-size: 18px;
+}
+#order th,
+td {
+  text-align: center;
+}
+#search {
+  background-color: rgb(139, 51, 0);
+  border: 0;
+}
+#search:hover {
+  background-color: black;
+}
+#s {
+  border-color: rgb(233, 209, 198);
+  color: rgb(194, 118, 12);
+}
+#s:active,
+#s:focus {
+  box-shadow: none;
+}
+
+.page-link {
+  background-color: rgb(255, 230, 197);
+  color: rgb(109, 0, 0);
+}
+.page-link:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(139, 51, 0);
+}
+
+.active > .page-link,
+.page-link.active {
+  color: rgb(255, 230, 197);
+  background-color: rgb(109, 0, 0);
+}
+
+.carousel {
+  background-color: rgba(255, 220, 220, 0.542);
+}
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 0;
+}
+
+.carousel-caption h5 {
+  color: rgb(0, 0, 0);
+}
+
+.carousel-indicators button {
+  width: 0.5rem !important;
+  height: 0.5rem !important;
+  border-radius: 50%;
+}
+.carousel-indicators button:not(:active) {
+  margin-left: 0.5rem;
+  background-color: rgb(139, 51, 0);
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 50px;
+  width: 50px;
+  filter: invert(100%);
+  border-radius: 50%;
+}
+.carousel img {
+  height: 200px;
+  width: 200px;
+  margin: 80px;
+
+  border-radius: 50%;
+}
+.carousel a {
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .carousel-caption h5 {
+    font-size: 1.5vw;
+  }
+}
+
+@media (max-width: 430px) {
+  .carousel {
+    display: none;
+  }
+}
