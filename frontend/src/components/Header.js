@@ -61,12 +61,12 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
-              {(userInfo && !userInfo.isAdmin && !userInfo.isSeller) ||
-                (!userInfo && (
-                  <Nav.Link onClick={sellHandler}>
-                    <i className="fa-solid fa-people-carry-box"></i> Sell Now
-                  </Nav.Link>
-                ))}
+            {((userInfo && !userInfo.isAdmin && !userInfo.isSeller) ||
+                !userInfo) && (
+                <Nav.Link onClick={sellHandler}>
+                  <i className="fa-solid fa-people-carry-box"></i> Sell Now
+                </Nav.Link>
+              )}
 
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title="Admin" id="adminmenu">
