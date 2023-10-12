@@ -64,3 +64,9 @@ Seller
   <img src="e.png">
   </p>
 
+## Sequence Diagram 
+The Sequence Diagram for our project illustrates the interactions between the Buyer, Seller, and our Platform during a typical transaction.
+
+<p align="center">
+  <img src="y.png" height="250px">
+  </p>
