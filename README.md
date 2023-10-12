@@ -96,4 +96,6 @@ The Schema Diagram provides a visual representation of the data model used in th
        <img src="x6.png" height="250px">
         <img src="x7.png" height="250px">
          <img src="x8.png" height="250px">
+      <img src="x3.png" height="250px">
+
   </p>
