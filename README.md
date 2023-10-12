@@ -83,6 +83,6 @@ The Order Collection stores data related to each transaction, such as the Buyer 
 The Schema Diagram provides a visual representation of the data model used in the project, and helps developers understand how the data is organized and stored in the database.
 
 <p align="center">
-  <img src="z.png" height="250px">
+  <img src="z.png" >
   </p>
 
