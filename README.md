@@ -24,3 +24,43 @@ Taking inspiration from a Telegram Group already existing for this purpose in MI
   <img src="bc.png" height="250px">
   </p>
 
+## Modules 
+Login/ Registration 
+Easy Login/ Registration and Profile creation for the user. 
+User Profile
+Users can edit their profile, view, and manage their orders. They can also join in as a seller and start selling their products on the website.
+
+
+
+## Demo
+
+https://secondchance.onrender.com/
+
+
+## Modules
+
+- Login/ Registration
+- Buy option for each product
+- Payment gateway
+- Customer Support 
+- Dashboard for Admin
+- Dashboard for Seller
+
+
+## System design
+
+Activity diagram 
+
+Customer 
+
+<p align="center">
+  <img src="d.png" height="250px">
+  </p>
+
+
+Seller 
+
+<p align="center">
+  <img src="e.png" height="250px">
+  </p>
+
