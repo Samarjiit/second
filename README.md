@@ -99,3 +99,15 @@ The Schema Diagram provides a visual representation of the data model used in th
       <img src="x3.png" height="250px">
 
   </p>
+
+
+  ## Conclusion 
+  In our everyday lives, we have come across multiple instances wherein products have been thrown away or kept aside for the mere reason of it no longer being of any use. By making little changes to help reduce waste, these small steps can turn into bigger steps encouraging others to make small changes too. 
+  
+Taking inspiration from a Telegram Group already existing for this purpose in MIT Manipal, and expanding upon it, is our website 2 Chance, where both sellers and buyers are students across streams;
+it consists of and portrays several goods(second-hand) for buyers to purchase at economical prices and thereby allows sellers to do away with their expendable items at reasonable prices in an environment friendly way.
+Every day is a ‘second chance’. By showcasing various ‘previously owned’ items, we wish to encourage people to give used products a second chance, another go at life by providing a way that benefits the Sellers, Buyers and most importantly, our environment as well, making second-hand their first choice. 
+
+  ## Learning Curve
+We learnt a lot in terms of using and experimenting with React.js, Node.js, Express.js and MongoDB in this project. 
+This project ‘2 Chance’, has helped us in understanding the different development phases of a website and test its various features. We believe that we have accomplished our objectives and aim and are very happy and satisfied with the code we have developed, which could possibly be successfully utilized by us, the ‘MITians’ commercially to buy and sell their second-hand products.
