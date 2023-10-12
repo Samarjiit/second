@@ -54,13 +54,13 @@ Activity diagram
 Customer 
 
 <p align="center">
-  <img src="d.png" height="250px">
+  <img src="d.png" >
   </p>
 
 
 Seller 
 
 <p align="center">
-  <img src="e.png" height="250px">
+  <img src="e.png">
   </p>
 
