@@ -70,3 +70,19 @@ The Sequence Diagram for our project illustrates the interactions between the Bu
 <p align="center">
   <img src="y.png">
   </p>
+
+
+
+  ## Schema Diagram 
+The Schema Diagram for the project shows the structure of the database, which  consists of three collections: Users, Products, and Orders. 
+
+The Customer Collection stores data such as name, email, and password for each registered user. The Product Collection stores details about each product, such as name, description, price, and image URL. 
+
+The Order Collection stores data related to each transaction, such as the Buyer and Seller Ids, Product Ids, price, and timestamp. 
+
+The Schema Diagram provides a visual representation of the data model used in the project, and helps developers understand how the data is organized and stored in the database.
+
+<p align="center">
+  <img src="z.png" height="250px">
+  </p>
+
