@@ -5,7 +5,7 @@ This project is to enable people to easily access, be made aware and utilize the
 
 “Consume less, share better.”
 <p align="center">
-  <img src="ab.png" height="250px">
+  <img src="ab.png" height="400px">
   </p>
 
 
